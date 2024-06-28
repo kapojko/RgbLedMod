@@ -14,9 +14,19 @@ parameter BLINK_PERIOD = 31'd2700_0000; // 1.0 s
 parameter VALUE_ON     = 1'b0;
 parameter VALUE_OFF    = 1'b1;
 
-reg [31:0] counter; // Blink counter
-reg [7:0]  cycle;  // PWM cycle
-reg [2:0]  led; // LED output
+reg [31:0] counter;   // Blink counter
+reg [7:0]  cycle;     // PWM cycle
+reg        blink_cur; // Current blink state
+reg [2:0]  led;       // LED output
+
+always @(posedge clk or negedge n_rst) begin
+    if (!n_rst || ~blink_en)
+        blink_cur <= 1'b0;
+    else if (counter < BLINK_PERIOD / 2)
+        blink_cur <= 1'b0;
+    else
+        blink_cur <= 1'b1;
+end
 
 always @(posedge clk or negedge n_rst) begin
     if (!n_rst) begin
@@ -24,51 +34,22 @@ always @(posedge clk or negedge n_rst) begin
         cycle <= 8'd0;
         led <= 3{VALUE_OFF};
     end
-    else if (counter < BLINK_PERIOD / 2) begin
-        // Red PWM
-        if (cycle < rgb[23:16])
-            led[2] <= VALUE_ON; // light on
-        else
-            led[2] <= VALUE_OFF; // light off
-
-        // Green PWM
-        if (cycle < rgb[15:8])
-            led[1] <= VALUE_ON; // light on
-        else
-            led[1] <= VALUE_OFF; // light off
-
-        // Blue PWM
-        if (cycle < rgb[7:0])
-            led[0] <= VALUE_ON; // light on
-        else
-            led[0] <= VALUE_OFF; // light off
-
-        // Update PWM cycle
-        if (cycle == 8'd254)
-            // NOTE: cycle consist of 255 steps (not 256) to enable full-off and full-on
-            cycle <= 8'd0;
-        else
-            cycle <= cycle + 1'd1;
-
-        // Update blink counter
-        counter <= counter + 1'd1;
-    end
     else begin
         // Red PWM
         if (cycle < rgb[23:16])
-            led[2] <= VALUE_ON ^ blink_en; // light on when blink disabled
+            led[2] <= VALUE_ON ^ blink_cur; // light on when blink inactive
         else
             led[2] <= VALUE_OFF; // light off
 
         // Green PWM
         if (cycle < rgb[15:8])
-            led[1] <= VALUE_ON ^ blink_en; // light on when blink disabled
+            led[1] <= VALUE_ON ^ blink_cur; // light on when blink inactive
         else
             led[1] <= VALUE_OFF; // light off
 
         // Blue PWM
         if (cycle < rgb[7:0])
-            led[0] <= VALUE_ON ^ blink_en; // light on when blink disabled
+            led[0] <= VALUE_ON ^ blink_cur; // light on when blink inactive
         else
             led[0] <= VALUE_OFF; // light off
 

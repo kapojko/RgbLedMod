@@ -1,4 +1,4 @@
-=N:[UsageMeter (2024-06-28 23:15:28 RTZ 2 (зима))] usage server initial connection
+=N:[UsageMeter (2024-06-28 23:49:40 RTZ 2 (зима))] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -12,7 +12,6 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [4/5] module RgbLed_tb: 10 functions, 70 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
