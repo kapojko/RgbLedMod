@@ -1,6 +1,4 @@
-// NOTE: timescale adapted for simplified simulation
-`timescale 1ms / 1us
-// `timescale 1ns / 1ps
+`timescale 1ns / 1ps
 
 module RgbLed_tb;
 
@@ -28,9 +26,7 @@ RgbLed #(.BLINK_PERIOD(31'd1000)) rgbLedInst (
 );
 
 // Clock generation
-// NOTE: clock period adapted for simplified simulation
-always #0.5 clk = ~clk; // 1 KHz clock
-// always #18.52 clk = ~clk; // 27 MHz clock
+always #18.52 clk = ~clk; // 27 MHz clock
 
 initial begin
     // Initialize Inputs
@@ -40,33 +36,33 @@ initial begin
     rgb = 24'hFF0000; // Red
 
     // Reset
-    #100 n_rst = 1;
+    #1000 n_rst = 1;
 
     // Test cases
     // Case 1: Blink disabled
-    #500 blink_en = 0;
+    #5000 blink_en = 0;
 
     // Clean colors
-    #500 rgb = 24'h00FF00; // Green
-    #500 rgb = 24'h0000FF; // Blue
-    #500 rgb = 24'h000000; // Off
+    #5000 rgb = 24'h00FF00; // Green
+    #5000 rgb = 24'h0000FF; // Blue
+    #5000 rgb = 24'h000000; // Off
 
     // Mixed colors
-    #500 rgb = 24'hFFA050; // Orange
+    #5000 rgb = 24'hFFA050; // Orange
 
     // Case 2: Blink enabled
-    #500 blink_en = 1;
+    #5000 blink_en = 1;
     
     // Clean colors
-    #1000 rgb = 24'hFF0000; // Red
-    #1000 rgb = 24'h00FF00; // Green
-    #1000 rgb = 24'h0000FF; // Blue
-    #1000 rgb = 24'h000000; // Off
+    #10000 rgb = 24'hFF0000; // Red
+    #10000 rgb = 24'h00FF00; // Green
+    #10000 rgb = 24'h0000FF; // Blue
+    #10000 rgb = 24'h000000; // Off
 
     // Mixed colors
-    #1000 rgb = 24'hFFA050; // Orange
+    #10000 rgb = 24'hFFA050; // Orange
 
-    #1000 $finish;
+    #10000 $finish;
 end
 
 endmodule

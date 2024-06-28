@@ -1,4 +1,4 @@
-=N:[UsageMeter (2024-06-27 23:20:23 RTZ 2 (зима))] usage server initial connection
+=N:[UsageMeter (2024-06-28 23:15:28 RTZ 2 (зима))] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -8,15 +8,6 @@ Elaborating...
     $unit
     RgbLed_tb
   Found 5 unique specialization(s) of 5 design element(s).
-=W:[MissingTimescale]:
-    It is illegal for some design elements to have time specifications    
-    while others don't.  A complete time specification includes           
-    both a time unit and time precision.                                  
-
-        Have complete time spec    Have no/incomplete time spec    
-
-        RgbLed_tb                  RgbLed                          
-
 Optimizing...
 Building models...
 PLI/VPI access: +b 
@@ -29,7 +20,7 @@ Using default typical min/typ/max.
 =N:[dump] Dump started at time 0
 =N:Starting event scheduler...
 =N:[dumpMXD] closing MXD dump
-=T:Simulation terminated by $finish at time 54100000 (..\RgbLed_tb.v:56);
+=T:Simulation terminated by $finish at time 91000000 (..\RgbLed_tb.v:65);
 Run directory: D:\Source\Components\RgbLedMod\sim
   System timescale is 1ps / 1ps
   Metrics DSim version: 20240422.5.0 (b:R #c:0 h:69717b3410 os:msys2_)

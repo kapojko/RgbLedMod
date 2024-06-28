@@ -2,12 +2,13 @@
 
 Verilog core for managing 3-wire RGB PWM Led (full colors) with blinking support.
 
-## Notes on operation
+## Module parameters
 
-Output PWM is inverse:
+The following parameters are configurable:
 
-* LED on: active low
-* LED off: active high
+* Blink period (full cycle on/off) in clock cycles
+* LED on value (1 for active high, 0 for active low)
+* LED off value (0 for active high, 1 for active low)
 
 ## Simulation
 
