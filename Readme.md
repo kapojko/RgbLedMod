@@ -2,6 +2,13 @@
 
 Verilog core for managing 3-wire RGB PWM Led (full colors) with blinking support.
 
+## Notes on operation
+
+Output PWM is inverse:
+
+* LED on: active low
+* LED off: active high
+
 ## Simulation
 
 For simulation purpose, testbench `RgbLed_tb` is provided.
