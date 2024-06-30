@@ -32,7 +32,7 @@ always @(posedge clk or negedge n_rst) begin
     if (!n_rst) begin
         counter <= 31'd0;
         cycle <= 8'd0;
-        led <= 3{VALUE_OFF};
+        led <= {3{VALUE_OFF}};
     end
     else begin
         // Red PWM
