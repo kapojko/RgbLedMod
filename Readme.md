@@ -25,7 +25,7 @@ Steps for simulation:
     * License may be downloaded and manually put to `AppData/Local/metrics-ca` directory.
 * Create `sim` directory.
 * Right click on `sim` directory and create new *DSim* project with root directory `..\`.
-* Right click on testbench Verilog files and add them to project using *Configure File* command.
+* Right click on Verilog files and add them to project using *Configure File* command.
 * Go to *Library configuration* panel and compile *work* library.
 * Create the simulation *RgbLed_sim* with the following options: `-top work.RgbLed_tb +acc+b -waves waves.mxd`.
 * Run simulation.

@@ -1,7 +1,10 @@
 `timescale 1ns / 1ps
 
-module RgbLed (
-    input         clk,      // 27 MHz
+module RgbLed # (
+    parameter BLINK_PERIOD = 31'd2700_0000, // 1.0 s
+    parameter VALUE_ON     = 1'b0 // default is active low
+) (
+    input         clk,      // 27 MHz default
     input         n_rst,    // Reset, active low
     input         blink_en, // Blink enable
     input  [23:0] rgb,      // RGB value (8 bits each)
@@ -9,9 +12,6 @@ module RgbLed (
     output        led_g,    // Green input of 3-input RGB LED (PWM), pull-up
     output        led_b     // Blue input of 3-input RGB LED (PWM), pull-up
 );
-
-parameter BLINK_PERIOD = 31'd2700_0000; // 1.0 s
-parameter VALUE_ON     = 1'b0; // default is active low
 
 localparam VALUE_OFF = ~VALUE_ON;
 
