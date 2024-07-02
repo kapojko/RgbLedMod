@@ -11,8 +11,9 @@ module RgbLed (
 );
 
 parameter BLINK_PERIOD = 31'd2700_0000; // 1.0 s
-parameter VALUE_ON     = 1'b0;
-parameter VALUE_OFF    = 1'b1;
+parameter VALUE_ON     = 1'b0; // default is active low
+
+localparam VALUE_OFF = ~VALUE_ON;
 
 reg [31:0] counter;   // Blink counter
 reg [7:0]  cycle;     // PWM cycle
